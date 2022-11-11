@@ -1,5 +1,6 @@
 import { client } from '../libs/client'
 import styles from '../styles/Home.module.css'
+import Link from 'next/link';
 
 // Static Site Generation(SSG)
 export const getStaticProps = async () => {
@@ -14,9 +15,16 @@ export const getStaticProps = async () => {
 }
 
 export default function Home({ blogs }) {
-  return (
-    <div>
 
+  return (
+    <div className={styles.container}>
+      {blogs.map((blog, index) => (
+        <li key={index}>
+          <Link href={`blog/${blog.id}`}>
+            {blog.title}
+          </Link>
+        </li>
+      ))}
     </div>
   )
 }
